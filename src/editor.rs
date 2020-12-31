@@ -131,6 +131,32 @@ impl Editor {
                                     self.open_docs[current_doc].insert(Cell::Char(')'));
                                 }
                             }
+                            else if c == '{' {
+                                self.open_docs[current_doc].insert(Cell::Char('{'));
+                                self.open_docs[current_doc].insert(Cell::Char('}'));
+                                self.open_docs[current_doc].cursor_pos -= 1;
+                            }
+                            else if c == '}' {
+                                if self.open_docs[current_doc].cursor_pos < self.open_docs[current_doc].cells.len() && self.open_docs[current_doc].cells[self.open_docs[current_doc].cursor_pos] == Cell::Char('}') {
+                                    self.open_docs[current_doc].cursor_pos += 1;
+                                }
+                                else {
+                                    self.open_docs[current_doc].insert(Cell::Char('}'));
+                                }
+                            }
+                            else if c == '[' {
+                                self.open_docs[current_doc].insert(Cell::Char('['));
+                                self.open_docs[current_doc].insert(Cell::Char(']'));
+                                self.open_docs[current_doc].cursor_pos -= 1;
+                            }
+                            else if c == ']' {
+                                if self.open_docs[current_doc].cursor_pos < self.open_docs[current_doc].cells.len() && self.open_docs[current_doc].cells[self.open_docs[current_doc].cursor_pos] == Cell::Char(']') {
+                                    self.open_docs[current_doc].cursor_pos += 1;
+                                }
+                                else {
+                                    self.open_docs[current_doc].insert(Cell::Char(']'));
+                                }
+                            }
                             else {
                                 self.open_docs[current_doc].insert(Cell::Char(c));
                             }
